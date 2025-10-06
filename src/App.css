@@ -372,29 +372,51 @@ a:hover {
 @media (max-width: 768px) {
     /* Navbar: Switch to mobile layout */
     .hamburger {
-        display: flex;
+        display: flex; /* Display the hamburger menu */
     }
 
+    /* * FIX: Initially hide the desktop nav-links 
+     * and set up for mobile absolute positioning.
+     */
     .nav-links {
+        /* Hides the links when the screen is small, UNLESS the 'active' class is present */
+        display: none; 
+
+        /* Overwrite desktop flex properties for mobile menu display */
         position: absolute;
-        top: 67px;
+        top: 67px; /* Adjust this value if your navbar height changes */
         right: 0;
         background: var(--white);
         border-top: 1px solid var(--light-gray);
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         flex-direction: column;
         width: 250px;
-        transform: translateX(100%);
+        /* Use opacity/visibility or a different approach for a slide-in effect if needed, 
+           but based on your JS, transform is intended. Let's adjust how 'active' works.
+           For a cleaner hidden state before transform: translateX(100%), 
+           the initial 'display: none' is the key fix.
+        */
         padding: 1.5rem;
     }
 
     .nav-links.active {
+        /* Show the menu when the 'active' class is added (hamburger is clicked) */
+        display: flex;
+        /* Slide-in effect setup */
         transform: translateX(0);
     }
+    
+    /* Revert the default nav-links transform to hide it initially */
+    .nav-links:not(.active) {
+        transform: translateX(100%);
+    }
 
+    /* Ensure links display as block elements inside the column */
     .nav-links li {
         margin: 0.75rem 0;
     }
+    
+    /* ... (rest of the media query for hero, auth, etc., remains the same) ... */
 
     /* Hero Section: Optimize for single column */
     .hero {
