@@ -36,7 +36,7 @@ export const RequireAuth = ({ children}) => {
 
   if (!data) {
 
-    return <Navigate to={`/login`} replace />;
+    return <Navigate to={`/home`} replace />;
   }
 
   return children;
